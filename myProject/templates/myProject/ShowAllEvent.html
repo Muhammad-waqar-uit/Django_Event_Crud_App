@@ -1,0 +1,18 @@
+{% extends 'myProject/base.html' %}
+{% block content %}
+<table class="table tableable-hover">
+<thead>
+<td>Events name</td>
+     </thead>
+
+    {% for a in Planner %}
+    <tr>
+        <td>{{ a.Events }}</td>
+        <td><a href="{% url 'e_update' a.id %}">Edit</a>|
+        <a href="{% url 'e_delete' a.id %}">Delete</a>
+    </td>
+    </tr>
+{% endfor %}
+
+    </table>
+{% endblock content%}

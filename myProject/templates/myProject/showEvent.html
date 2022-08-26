@@ -1,0 +1,51 @@
+{% extends 'myProject/base.html' %}
+<br>
+{% block content %}
+<table>
+    <tr><td>
+<form action=" {% url 'showEvent' %}" method ="POST">
+    {%csrf_token%}
+    <select name ="Events">
+        <option value="0">
+            Select Event</option>
+        {% for a in Events %}
+        <option value="{{a.id}}" >{{a.Events}}</option>
+        {% endfor %}
+    </select>
+
+</td>
+    <td><input type="submit" value="Search" class="btn btn-primary">
+</td>
+
+</form>
+</table>
+{% if Participants%}
+<table class="table tableable-hover">
+<thead>
+          <td>Event Name</td>
+            <td>Emails</td>
+            <td>Contact</td>
+          <td>Date</td>
+          <td>Time</td>
+          <td>Venue</td>
+            <td>Events</td>
+     </thead>
+
+    {% for p in Participants %}
+    <tr>
+        <td>{{p.p_name}} </td>
+        <td>{{p.email}}</td>
+        <td>{{p.p_contact}}</td>
+        <td>{{p.p_date}}</td>
+        <td>{{p.p_time}}</td>
+        <td>{{p.venue}}</td>
+        <td>{{p.Event_id}}</td>
+    </tr>
+
+
+    {% endfor %}
+    </table>
+{%else%}
+        <h4>No Record Found</h4>
+{%endif%}
+{% endblock content%}
